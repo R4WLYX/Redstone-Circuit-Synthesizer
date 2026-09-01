@@ -9,6 +9,7 @@
 
 enum class TokenType {
     // Literals
+    Newline,
     Identifier,
     Number,
 
@@ -78,7 +79,7 @@ class Lexer {
     [[nodiscard]] bool eof() const;
 
     [[nodiscard]] std::optional<char> at(std::size_t pos) const;
-    [[nodiscard]] std::optional<char> peek(std::size_t ahead = 0) const;
+    [[nodiscard]] std::optional<char> peek(std::size_t ahead = 1) const;
 
     char current() const;
     char consume();
@@ -90,6 +91,8 @@ class Lexer {
         std::size_t line,
         std::size_t column
     );
+
+    void lex_newline(std::vector<Token>& tokens);
 
     void lex_identifier(
         std::vector<Token>& tokens,

@@ -1,8 +1,8 @@
 ```
 <spec> ::= "spec" <identifier> "{" <declaration-sequence> "}"
 
-<declaration-sequence> ::= <declaration>
-						 | <declaration> <declaration-sequence>
+<declaration-sequence> ::= <declaration> <newline>
+						 | <declaration> <newline> <declaration-sequence>
 
 <declaration> ::= <input-declaration>
                 | <state-declaration>
@@ -47,11 +47,19 @@
 						  | <signal-expression> "==" <signal-expression>
 						  | <signal-expression> "!=" <signal-expression>
 
-<signal-expression> ::= <primary>
-					  | "~" <signal-expression>
-					  | <signal-expression> "-" <signal-expression>
-					  | <signal-expression> "?" <signal-expression>
-					  | <signal-expression> "|" <signal-expression>
+<signal-expression> ::= <conditional-expression>
+
+<conditional-expression> ::= <or-expression>
+						   | <or-expression> "?" <or-expression>
+
+<or-expression> ::= <sub-expression>
+				  | <or-expression> "|" <sub-expression>
+
+<sub-expression> ::= <unary-expression>
+				   | <sub-expression> "-" <unary-expression>
+
+<unary-expression> ::= <primary>
+					 | "~" <unary-expression>
 
 <primary> ::= <identifier>
             | <identifier> "[" <number> "]"
@@ -61,8 +69,8 @@
             
 <block> ::= "{" <statement-sequence> "}"
 
-<statement-sequence> ::= <statement>
-                       | <statement> <statement-sequence>
+<statement-sequence> ::= <statement> <newline>
+                       | <statement> <newline> <statement-sequence>
 
 <statement> ::= <for-statement>
               | <assignment>
@@ -94,35 +102,16 @@
 		   | "V" | "W" | "X" | "Y" | "Z"
 
 <number> ::= <decimal-number>
-           | <binary-number>
-           | <octal-number>
 		   | <hex-number>
-
-
 
 <decimal-number> ::= <digit>
 				   | <digit> <decimal-number>
 
-<binary-number> ::= "0b" <binary-digit-sequence>
-
-<octal-number> ::= "0o" <octal-digit-sequence>
-
 <hex-number> ::= "0x" <hex-digit-sequence>
 			   | "0X" <hex-digit-sequence>
 
-<binary-digit-sequence> ::= <binary-digit>
-					   | <binary-digit> <binary-digit-sequence>
-
-<octal-digit-sequence> ::= <octal-digit>
-					   | <octal-digit> <octal-digit-sequence>
-
 <hex-digit-sequence> ::= <hex-digit>
 					   | <hex-digit> <hex-digit-sequence>
-
-<binary-digit> ::= "0" | "1"
-
-<octal-digit> ::= "0" | "1" | "2" | "3"
-                | "4" | "5" | "6" | "7"
 
 <hex-digit> ::= <digit>
 			  | "a" | "b" | "c" | "d" | "e" | "f"
@@ -130,4 +119,6 @@
 
 <digit> ::= "0" | "1" | "2" | "3" | "4"
 		  | "5" | "6" | "7" | "8" | "9"
+
+<newline> ::= "\n"
 ```

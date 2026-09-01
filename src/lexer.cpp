@@ -99,16 +99,17 @@ std::vector<Token> Lexer::lex() {
     std::vector<Token> tokens;
 
     while (!eof()) {
-        if (is_whitespace(current())) {
-            consume();
-            continue;
-        }
-
         std::size_t start = _pos;
         std::size_t line = _line;
         std::size_t column = _column;
 
-        if (is_identifier_start(current())) {
+        if (current() == '\n' || current() == '\r') {
+            lex_newline(tokens);
+        }
+        else if (is_whitespace(current())) {
+            consume();
+        }
+        else if (is_identifier_start(current())) {
             lex_identifier(tokens, start, line, column);
         }
         else if (is_digit(current())) {
@@ -178,6 +179,24 @@ void Lexer::emit(
     tokens.push_back({type, _src.substr(start, _pos - start), line, column});
 }
 
+void Lexer::lex_newline(std::vector<Token>& tokens) {
+    std::size_t line = _line;
+    std::size_t column = _column;
+
+    if (current() == '\r') {
+        consume();
+
+        if (!eof() && current() == '\n') {
+            consume();
+        }
+    }
+    else {
+        consume();
+    }
+
+    tokens.push_back({TokenType::Newline, "\\n", line, column});
+}
+
 void Lexer::lex_identifier(
     std::vector<Token>& tokens,
     std::size_t start,
@@ -207,17 +226,17 @@ void Lexer::lex_number(
     NumberBase base = NumberBase::Decimal;
 
     if (current() == '0') {
-        if (peek(1) == 'b') {
+        if (peek() == 'b') {
             base = NumberBase::Binary;
             consume();
             consume();
         }
-        else if (peek(1) == 'o') {
+        else if (peek() == 'o') {
             base = NumberBase::Octal;
             consume();
             consume();
         }
-        else if (peek(1) == 'x' || peek(1) == 'X') {
+        else if (peek() == 'x' || peek() == 'X') {
             base = NumberBase::Hexadecimal;
             consume();
             consume();
@@ -290,7 +309,7 @@ void Lexer::lex_ellipsis(
     std::size_t line,
     std::size_t column
 ) {
-    if (peek(1) == '.' && peek(2) == '.') {
+    if (peek() == '.' && peek(2) == '.') {
         consume();
         consume();
         consume();
