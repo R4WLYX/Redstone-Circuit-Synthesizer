@@ -1,0 +1,22 @@
+# ninja log v7
+27	59	8099862549077064	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb
+57	1871	8099862245385963	CMakeFiles/craft.dir/src/main.cpp.obj	1f4d6c93214a2a1e
+1872	2802	8099862263535832	craft.exe	5b10dbb478a7cba5
+48	133	8099858885505392	resources.stamp	630261dcfb15e3c
+48	133	8099858885505392	C:/Users/User/Documents/Projects/RCS/build/resources.stamp	630261dcfb15e3c
+51	1497	8099857891111830	CMakeFiles/craft.dir/src/lexer.cpp.obj	b4fdcba809791336
+47	421	8099863023491568	build.ninja	6f33c7a8b703ff32
+47	421	8099863023411611	C:/Users/User/Documents/Projects/RCS/build/cmake_install.cmake	6f33c7a8b703ff32
+24	56	8099863035446990	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb
+58	1041	8099863035786822	craft.exe	fc7bb59b07ba9f56
+13	45	8099863267923934	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb
+47	1923	8099863268253938	CMakeFiles/craft.dir/src/main.cpp.obj	1f4d6c93214a2a1e
+1924	2871	8099863287024149	craft.exe	fc7bb59b07ba9f56
+25	58	8099873512308212	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb
+60	1757	8099873512668230	CMakeFiles/craft.dir/src/lexer.cpp.obj	b4fdcba809791336
+67	2112	8099873512728261	CMakeFiles/craft.dir/src/main.cpp.obj	1f4d6c93214a2a1e
+2112	3170	8099873533178214	craft.exe	fc7bb59b07ba9f56
+79	197	8099873672419681	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb
+206	6356	8099873673679555	CMakeFiles/craft.dir/src/main.cpp.obj	1f4d6c93214a2a1e
+6356	7433	8099873735179501	craft.exe	fc7bb59b07ba9f56
+23	80	8099875449271019	C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/cmake.verify_globs	4aa11904be2d84fb

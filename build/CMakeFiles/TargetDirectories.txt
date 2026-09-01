@@ -1,0 +1,3 @@
+C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/craft.dir
+C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/edit_cache.dir
+C:/Users/User/Documents/Projects/RCS/build/CMakeFiles/rebuild_cache.dir

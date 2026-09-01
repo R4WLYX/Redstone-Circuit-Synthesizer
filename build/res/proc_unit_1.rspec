@@ -1,0 +1,47 @@
+spec processing_unit_1 {
+    input inst : S
+    input data : S
+  
+    state reg[4] : S
+  
+    output reg(1)
+    
+    label clear_1
+    label clear_2
+    label clear_3
+    label merge_12
+    label merge_13
+    label merge_24
+    label merge_31
+    label load_3
+    label set_43
+    label sub_32
+  
+    behavior {
+        next reg(1) = switch inst {
+            case clear_1: 0
+            case merge_12: reg_1 | reg_2
+            case merge_13: reg_1 | reg_3
+            default: reg_1
+        }
+        
+        next reg(2) = switch inst {
+            case clear_2: 0
+            case merge_24: reg_2 | reg_4
+            default: reg_2
+        }
+        
+        next reg(3) = switch inst {
+            case clear_3: 0
+            case merge_31: reg_3 | reg_1
+            case load_3: data | reg_3
+            case sub_32: reg_3 - reg_2
+            default: reg_3
+        }
+        
+        next reg(4) = switch inst {
+            case set_43: reg_3
+            default: reg_4
+        }
+    }  
+}
