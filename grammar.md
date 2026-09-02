@@ -1,5 +1,5 @@
 ```
-<spec> ::= "spec" <identifier> "{" <declaration-sequence> "}"
+<specification> ::= "spec" <identifier> "{" <declaration-sequence> "}"
 
 <declaration-sequence> ::= <declaration> <newline>
 						 | <declaration> <newline> <declaration-sequence>
@@ -11,10 +11,13 @@
                 | <behavior-declaration>
 
 <input-declaration> ::= "input" <identifier> ":" <type>
+                      | "input" <identifier> "[" <number> "]" ":" <type>
 
 <state-declaration> ::= "state" <identifier> ":" <type>
+                      | "state" <identifier> "[" <number> "]" ":" <type>
 
 <output-declaration> ::= "output" <identifier> ":" <type>
+                       | "output" <identifier> "[" <number> "]" ":" <type>
 					   | "output" <identifier>
 
 <type> ::= "B"
@@ -34,8 +37,8 @@
 
 <switch-expression> ::= "switch" <identifier> "{" <case-sequence> "}"
 
-<case-sequence> ::= <case>
-			      | <case> <case-sequence>
+<case-sequence> ::= <case> <newline>
+			      | <case> <newline> <case-sequence>
 
 <case> ::= "case" <number> ":" <case-expression>
 		 | "case" <identifier> ":" <case-expression>
@@ -47,16 +50,14 @@
 						  | <signal-expression> "==" <signal-expression>
 						  | <signal-expression> "!=" <signal-expression>
 
-<signal-expression> ::= <conditional-expression>
-
-<conditional-expression> ::= <or-expression>
-						   | <or-expression> "?" <or-expression>
+<signal-expression> ::= <or-expression>
 
 <or-expression> ::= <sub-expression>
 				  | <or-expression> "|" <sub-expression>
 
 <sub-expression> ::= <unary-expression>
 				   | <sub-expression> "-" <unary-expression>
+				   | <sub-expression> "?" <unary-expression>
 
 <unary-expression> ::= <primary>
 					 | "~" <unary-expression>
@@ -68,6 +69,7 @@
             | "(" <signal-expression> ")"
             
 <block> ::= "{" <statement-sequence> "}"
+          | "{" "}"
 
 <statement-sequence> ::= <statement> <newline>
                        | <statement> <newline> <statement-sequence>
@@ -80,12 +82,12 @@
 
 <for-statement> ::= "forall" <identifier> "in" <range> <block>
 
-<range> ::= "0" "..." <number>
+<range> ::= <number> "..." <number>
 
 <identifier> ::= <letter> <identifier-tail>
 			   | "_" <identifier-tail>
 
-<identifier-tail> ::= ε
+<identifier-tail> ::= ""
                     | <character> <identifier-tail>
 
 <character> ::= <letter>
@@ -105,13 +107,10 @@
 		   | <hex-number>
 
 <decimal-number> ::= <digit>
-				   | <digit> <decimal-number>
+                   | "1" <zero-to-five>
 
-<hex-number> ::= "0x" <hex-digit-sequence>
-			   | "0X" <hex-digit-sequence>
-
-<hex-digit-sequence> ::= <hex-digit>
-					   | <hex-digit> <hex-digit-sequence>
+<hex-number> ::= "0x" <hex-digit>
+			   | "0X" <hex-digit>
 
 <hex-digit> ::= <digit>
 			  | "a" | "b" | "c" | "d" | "e" | "f"
@@ -119,6 +118,8 @@
 
 <digit> ::= "0" | "1" | "2" | "3" | "4"
 		  | "5" | "6" | "7" | "8" | "9"
+
+<zero-to-five> ::= "0" | "1" | "2" | "3" | "4" | "5"
 
 <newline> ::= "\n"
 ```

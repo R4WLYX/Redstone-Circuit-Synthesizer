@@ -9,7 +9,6 @@
 
 enum class TokenType {
     // Literals
-    Newline,
     Identifier,
     Number,
 
@@ -52,6 +51,7 @@ enum class TokenType {
     RParen,   // )
     Colon,    // :
     Ellipsis, // ...
+    Newline,  // \n
 
     EndOfFile
 };

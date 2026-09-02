@@ -8,8 +8,6 @@
 
 std::string token_type_to_str(TokenType type) {
     switch (type) {
-    case TokenType::Newline:
-    return "Newline";
     case TokenType::Identifier:
         return "Identifier";
     case TokenType::Number:
@@ -82,6 +80,8 @@ std::string token_type_to_str(TokenType type) {
         return "Colon";
     case TokenType::Ellipsis:
         return "Ellipsis";
+    case TokenType::Newline:
+        return "Newline";
 
     case TokenType::EndOfFile:
         return "EndOfFile";
